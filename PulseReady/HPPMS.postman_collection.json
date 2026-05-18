@@ -1,0 +1,172 @@
+{
+  "info": {
+    "name": "HPPMS Hackathon",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{API}}/health",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"admin\", \"password\": \"admin\"}"
+        },
+        "url": {
+          "raw": "{{API}}/auth/login",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Weights",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{TOKEN}}"
+          }
+        ],
+        "url": {
+          "raw": "{{API}}/weights/alpha",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "weights",
+            "alpha"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Put Weights",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{TOKEN}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"fatigue\": 0.3, \"recovery\": 0.3, \"heat\": 0.2, \"altitude\": 0.1, \"sleep\": 0.1}"
+        },
+        "url": {
+          "raw": "{{API}}/weights/alpha",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "weights",
+            "alpha"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Post Metric (device)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-device-key",
+            "value": "CHANGE_ME"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"user_id\": \"u123\", \"unit_id\": \"alpha\", \"mrs\": 78, \"ori\": \"green\", \"components\": {\"fatigue\": 32.4, \"recoveryDeficit\": 20.0, \"heatRisk\": 12.0, \"altitude\": 0.0, \"sleepDebt\": 18.0}, \"ts\": \"2025-11-08T17:32:14Z\"}"
+        },
+        "url": {
+          "raw": "{{API}}/metrics",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "metrics"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Metrics",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{TOKEN}}"
+          }
+        ],
+        "url": {
+          "raw": "{{API}}/metrics?unitId=alpha&limit=200",
+          "host": [
+            "{{API}}"
+          ],
+          "path": [
+            "metrics"
+          ],
+          "query": [
+            {
+              "key": "unitId",
+              "value": "alpha"
+            },
+            {
+              "key": "limit",
+              "value": "200"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "TOKEN",
+      "value": ""
+    }
+  ]
+}
